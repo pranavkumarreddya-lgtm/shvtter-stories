@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+  
+  --color-gold-50: #fbf7f2;
+  --color-gold-100: #f4eae0;
+  --color-gold-200: #e7d3be;
+  --color-gold-300: #d4b697;
+  --color-gold-400: #be9570;
+  --color-gold-500: #a97c55;
+  --color-gold-600: #936440;
+  --color-gold-700: #7a4f31;
+  --color-gold-800: #623e27;
+  --color-gold-900: #513320;
+}
+
+/* Custom smooth scroll and dark body styling */
+html, body {
+  /* Background is transparent so the fixed <video> behind (-z-1) shows through */
+  background-color: transparent;
+  color: #f3f4f6;
+  scroll-behavior: smooth;
+  font-family: var(--font-sans);
+}
+
+/* Subtle custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0d0d0d;
+}
+::-webkit-scrollbar-thumb {
+  background: #262626;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #3f3f3f;
+}

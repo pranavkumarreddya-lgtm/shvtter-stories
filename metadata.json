@@ -1,0 +1,6 @@
+{
+  "name": "Shvtter Stories",
+  "description": "Professional photography portfolio and services featuring stories through the lens.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
