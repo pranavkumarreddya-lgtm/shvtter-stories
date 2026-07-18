@@ -98,7 +98,7 @@ export default function BackgroundVideo() {
         id="bg-video-fallback"
       >
         <img
-          src="/camera_poster.png"
+          src={`${import.meta.env.BASE_URL}camera_poster.png`}
           alt=""
           className="w-full h-full object-cover"
           loading="eager"
@@ -118,8 +118,8 @@ export default function BackgroundVideo() {
     >
       <video
         ref={videoRef}
-        src="/camera_exploded.mp4"
-        poster="/camera_poster.png"
+        src={`${import.meta.env.BASE_URL}camera_exploded.mp4`}
+        poster={`${import.meta.env.BASE_URL}camera_poster.png`}
         muted
         playsInline
         preload="auto"
