@@ -1,6 +1,6 @@
 import { useState, FormEvent, ChangeEvent } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Mail, Phone, MapPin, Send, CheckCircle2, RefreshCw } from 'lucide-react';
+import { Mail, Phone, MapPin, Send, CheckCircle2, RefreshCw, Instagram, MessageCircle } from 'lucide-react';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -99,6 +99,7 @@ export default function Contact() {
 
             {/* Direct Coordinates card lists */}
             <div className="space-y-6 pt-4 border-t border-neutral-900/80">
+              <div className="flex gap-3"><a href="https://wa.me/12125558920" aria-label="Chat with us on WhatsApp" className="inline-flex items-center gap-2 rounded-full border border-gold-400/40 px-4 py-2 text-xs text-gold-400 transition hover:bg-gold-400 hover:text-black"><MessageCircle className="h-4 w-4" />WhatsApp</a><a href="https://instagram.com" aria-label="Visit our Instagram" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs text-white transition hover:border-gold-400"><Instagram className="h-4 w-4" />Instagram</a></div>
               <motion.div 
                 whileHover={{ x: 4 }}
                 transition={{ type: 'spring', stiffness: 350, damping: 20 }}

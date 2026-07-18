@@ -16,7 +16,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '100'
     },
     story: 'Capturing the absolute quiet of the morning fog lifting from the cold northern waters as the first light breaks.',
-    date: 'Jan 2026'
+    date: 'Jan 2026', image: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1400&q=85', photographer: 'Alexander Mercer'
   },
   {
     id: '2',
@@ -32,7 +32,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '100'
     },
     story: 'The harsh diagonal shadows formed by the blazing sun on the red desert sand dunes, creating a high-contrast abstract painting.',
-    date: 'Mar 2026'
+    date: 'Mar 2026', image: 'https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1400&q=85', photographer: 'Alexander Mercer'
   },
   {
     id: '3',
@@ -48,7 +48,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '200'
     },
     story: 'A close-up portrait of an elderly artisan in his dusty workshop, capturing decades of wisdom and craftsmanship in the lines of his hands.',
-    date: 'Feb 2026'
+    date: 'Feb 2026', image: 'https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?auto=format&fit=crop&w=1400&q=85', photographer: 'Sofia Nakamura'
   },
   {
     id: '4',
@@ -64,7 +64,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '100'
     },
     story: 'A powerful portrait capturing the deep, piercing gaze of a nomadic Tuareg elder wearing his traditional indigo tagelmust.',
-    date: 'Apr 2026'
+    date: 'Apr 2026', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=1400&q=85', photographer: 'Sofia Nakamura'
   },
   {
     id: '5',
@@ -80,7 +80,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '400'
     },
     story: 'A lone grey wolf looking over a snowy ridge at dawn, standing perfectly still while scanning the quiet valley below.',
-    date: 'Dec 2025'
+    date: 'Dec 2025', image: 'https://images.unsplash.com/photo-1473445361085-b9a07f55608b?auto=format&fit=crop&w=1400&q=85', photographer: 'Alexander Mercer'
   },
   {
     id: '6',
@@ -96,7 +96,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '800'
     },
     story: 'An osprey caught mid-dive, wings folded back with absolute precision, moments before breaking the glassy surface of the ocean.',
-    date: 'Nov 2025'
+    date: 'Nov 2025', image: 'https://images.unsplash.com/photo-1444464666168-49d633b86797?auto=format&fit=crop&w=1400&q=85', photographer: 'Alexander Mercer'
   },
   {
     id: '7',
@@ -112,7 +112,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '200'
     },
     story: 'Golden rays filter through the vermillion torii gates of Fushimi Inari, free of the crowds in the peaceful hour of dawn.',
-    date: 'May 2026'
+    date: 'May 2026', image: 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=1400&q=85', photographer: 'Catalina Reyes'
   },
   {
     id: '8',
@@ -128,7 +128,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '400'
     },
     story: 'A boatman navigating the quiet morning waters of the Ganges, silhouetted against the rising sun and the ancient steps of the ghats.',
-    date: 'Oct 2025'
+    date: 'Oct 2025', image: 'https://images.unsplash.com/photo-1561361513-2d000a50f0dc?auto=format&fit=crop&w=1400&q=85', photographer: 'Catalina Reyes'
   },
   {
     id: '9',
@@ -144,7 +144,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '1600'
     },
     story: 'A single figure with an umbrella walking past a glowing wall of neon restaurant signs under a light, moody midnight drizzle.',
-    date: 'Jun 2026'
+    date: 'Jun 2026', image: 'https://images.unsplash.com/photo-1519608487953-e999c86e7454?auto=format&fit=crop&w=1400&q=85', photographer: 'Catalina Reyes'
   },
   {
     id: '10',
@@ -160,7 +160,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '800'
     },
     story: 'Fleeting moments on the Underground. High-contrast black and white showing the geometric repetition of windows and tired commuters.',
-    date: 'Sep 2025'
+    date: 'Sep 2025', image: 'https://images.unsplash.com/photo-1519501025264-65ba15a82390?auto=format&fit=crop&w=1400&q=85', photographer: 'Catalina Reyes'
   },
   {
     id: '11',
@@ -176,7 +176,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '100'
     },
     story: 'Studio macro shot of an open skeleton watch back, showing the fine balance wheel and interlocking gold gears in sharp focus.',
-    date: 'Feb 2026'
+    date: 'Feb 2026', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=1400&q=85', photographer: 'James Okonkwo'
   },
   {
     id: '12',
@@ -192,7 +192,7 @@ export const portfolioItems: PortfolioItem[] = [
       iso: '100'
     },
     story: 'A dramatic editorial lighting setup highlighting the architectural lines and fine pinstripe texture of an Italian tailored suit.',
-    date: 'Mar 2026'
+    date: 'Mar 2026', image: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?auto=format&fit=crop&w=1400&q=85', photographer: 'James Okonkwo'
   }
 ];
 
@@ -354,27 +354,31 @@ export const teamMembers: TeamMember[] = [
     name: 'Alexander Mercer',
     role: 'Lead Photographer & Founder',
     specialty: 'Landscape, Travel & Fine Art',
-    bio: 'Over a decade of international experience capturing the raw beauty of natural environments and human moments across 40+ countries.'
+    bio: 'Over a decade of international experience capturing the raw beauty of natural environments and human moments across 40+ countries.',
+    experience: '14 years · 42 countries', awards: 'IPA Gold · LensCulture Select', image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=900&q=85', featuredWork: 'Silent Fjords'
   },
   {
     id: 'team-2',
     name: 'Sofia Nakamura',
     role: 'Senior Portrait Artist',
     specialty: 'Portraits, Fashion & Weddings',
-    bio: 'Expert in sculpting light to reveal the authentic character and soul of every subject, from intimate portraits to editorial fashion campaigns.'
+    bio: 'Expert in sculpting light to reveal the authentic character and soul of every subject, from intimate portraits to editorial fashion campaigns.',
+    experience: '11 years · 380+ portraits', awards: 'Vogue Italia Feature · AOP Finalist', image: 'https://images.unsplash.com/photo-1531123897727-8f129e1688ce?auto=format&fit=crop&w=900&q=85', featuredWork: 'The Sculptor’s Hands'
   },
   {
     id: 'team-3',
     name: 'James Okonkwo',
     role: 'Commercial & Product Specialist',
     specialty: 'Product, Architecture & Luxury Brands',
-    bio: 'Bringing meticulous precision to commercial assignments, ensuring every product shot conveys luxury, quality, and brand narrative.'
+    bio: 'Bringing meticulous precision to commercial assignments, ensuring every product shot conveys luxury, quality, and brand narrative.',
+    experience: '9 years · 120 campaigns', awards: 'D&AD Graphite · Applied Arts', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=900&q=85', featuredWork: 'Precision Chrono'
   },
   {
     id: 'team-4',
     name: 'Catalina Reyes',
     role: 'Documentary & Street Photographer',
     specialty: 'Street, Documentary & Events',
-    bio: 'Passionate about capturing the candid theater of everyday life and preserving authentic moments at private and corporate events.'
+    bio: 'Passionate about capturing the candid theater of everyday life and preserving authentic moments at private and corporate events.',
+    experience: '8 years · 600+ live stories', awards: 'World Reportage Award · Magnum Nominee', image: 'https://images.unsplash.com/photo-1485230895905-ec40ba36b9bc?auto=format&fit=crop&w=900&q=85', featuredWork: 'Varanasi Rhythms'
   }
 ];

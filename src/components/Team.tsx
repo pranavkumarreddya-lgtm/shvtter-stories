@@ -1,88 +1,45 @@
 import { motion } from 'motion/react';
-import { Camera, MapPin } from 'lucide-react';
+import { ArrowUpRight, Award, Camera, MapPin } from 'lucide-react';
 import { teamMembers } from '../data';
 
-const gridVariants = {
-  hidden: { opacity: 0 },
-  show: { opacity: 1, transition: { staggerChildren: 0.12, delayChildren: 0.1 } }
-};
-
-const memberVariants = {
-  hidden: { opacity: 0, y: 30 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring', stiffness: 80, damping: 18 } }
-};
-
-// Generate initials from name
-function getInitials(name: string): string {
-  return name.split(' ').map(n => n[0]).join('');
-}
+const grid = { hidden: { opacity: 0 }, show: { opacity: 1, transition: { staggerChildren: 0.12 } } };
+const card = { hidden: { opacity: 0, y: 28 }, show: { opacity: 1, y: 0, transition: { duration: 0.55, ease: 'easeOut' } } };
 
 export default function Team() {
   return (
-    <section id="team" className="py-24 px-6 md:px-12 lg:px-24 bg-[#0a0a0a] border-t border-neutral-900/50">
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="text-center mb-16"
-        >
-          <span className="font-mono text-[9px] tracking-[0.35em] text-gold-400 font-semibold uppercase">
-            THE CREATIVE TEAM
-          </span>
-          <h2 className="font-serif text-3xl md:text-5xl font-light text-white mt-3 leading-tight">
-            Meet the Photographers
-          </h2>
-          <p className="font-sans text-xs text-neutral-400 font-light mt-4 max-w-lg mx-auto leading-relaxed">
-            A collective of visual storytellers, each bringing their unique perspective and decades of combined expertise.
-          </p>
-        </motion.div>
+    <section id="team" className="relative overflow-hidden bg-[#10152a] px-6 py-24 md:px-12 lg:px-24">
+      <div className="absolute inset-0 opacity-30 [background-image:linear-gradient(rgba(255,255,255,.06)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.06)_1px,transparent_1px)] [background-size:48px_48px]" />
+      <div className="relative mx-auto max-w-7xl">
+        <div className="mb-14 grid gap-6 md:grid-cols-[1fr_.7fr] md:items-end">
+          <div>
+            <span className="eyebrow">The artists behind the frame</span>
+            <h2 className="mt-4 max-w-3xl font-serif text-4xl leading-[.95] text-white md:text-6xl">Different eyes. <em className="text-[#f3aa72]">One exacting standard.</em></h2>
+          </div>
+          <p className="max-w-md text-sm leading-7 text-slate-300">Meet the photographers trusted for unrepeatable celebrations, intimate portraits, and campaigns that need to feel unmistakably human.</p>
+        </div>
 
-        {/* Team Grid */}
-        <motion.div
-          variants={gridVariants}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
+        <motion.div variants={grid} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.15 }} className="grid gap-5 sm:grid-cols-2 xl:grid-cols-4">
           {teamMembers.map((member) => (
-            <motion.div
-              key={member.id}
-              variants={memberVariants}
-              className="group relative rounded-xl border border-neutral-900 bg-neutral-950 p-6 text-center overflow-hidden"
-            >
-              {/* Avatar with initials */}
-              <div className="w-20 h-20 rounded-full bg-gradient-to-br from-neutral-800 to-neutral-900 border border-neutral-800 flex items-center justify-center mx-auto mb-5 group-hover:border-gold-600 transition-colors duration-500">
-                <span className="font-serif text-xl text-neutral-500 group-hover:text-gold-400 transition-colors duration-500">
-                  {getInitials(member.name)}
-                </span>
-              </div>
-
-              <h3 className="font-serif text-lg text-white font-normal">{member.name}</h3>
-              <p className="font-mono text-[9px] tracking-widest text-gold-400 uppercase mt-1">{member.role}</p>
-
-              <div className="flex items-center justify-center gap-1.5 mt-3 text-neutral-500">
-                <Camera className="w-3 h-3" />
-                <span className="text-[10px] font-mono">{member.specialty}</span>
-              </div>
-
-              {/* Bio on hover */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                className="absolute inset-0 bg-black/95 flex items-center justify-center p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-              >
-                <div className="text-center">
-                  <MapPin className="w-4 h-4 text-gold-400 mx-auto mb-3" />
-                  <p className="font-sans text-xs text-neutral-300 font-light leading-relaxed">
-                    {member.bio}
-                  </p>
+            <motion.article variants={card} key={member.id} className="group overflow-hidden rounded-2xl border border-white/10 bg-[#171d35] shadow-2xl shadow-black/20">
+              <div className="relative aspect-[4/5] overflow-hidden">
+                <img src={member.image} alt={`Portrait of ${member.name}`} className="h-full w-full object-cover grayscale-[18%] transition duration-700 group-hover:scale-105 group-hover:grayscale-0" loading="lazy" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#10152a] via-transparent to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between">
+                  <span className="rounded-full border border-white/15 bg-black/25 px-3 py-1.5 text-[10px] font-semibold tracking-[.16em] text-white backdrop-blur">{member.experience}</span>
+                  <ArrowUpRight className="h-5 w-5 text-[#f3aa72] transition-transform duration-300 group-hover:-translate-y-1 group-hover:translate-x-1" />
                 </div>
-              </motion.div>
-            </motion.div>
+              </div>
+              <div className="p-5">
+                <p className="text-xs font-semibold uppercase tracking-[.16em] text-[#f3aa72]">{member.role}</p>
+                <h3 className="mt-2 font-serif text-2xl text-white">{member.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-slate-300">{member.bio}</p>
+                <div className="mt-5 space-y-2 border-t border-white/10 pt-4 text-xs text-slate-300">
+                  <p className="flex gap-2"><Camera className="h-4 w-4 shrink-0 text-[#f3aa72]" />{member.specialty}</p>
+                  <p className="flex gap-2"><Award className="h-4 w-4 shrink-0 text-[#f3aa72]" />{member.awards}</p>
+                  <p className="flex gap-2 text-white"><MapPin className="h-4 w-4 shrink-0 text-[#f3aa72]" />Best known for: {member.featuredWork}</p>
+                </div>
+              </div>
+            </motion.article>
           ))}
         </motion.div>
       </div>

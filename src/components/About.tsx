@@ -52,6 +52,9 @@ export default function About() {
   return (
     <section id="about" className="py-24 px-6 md:px-12 lg:px-24 bg-black/30 border-t border-neutral-900/50 overflow-hidden">
       <div className="max-w-7xl mx-auto">
+        <motion.div initial={{ opacity: 0, y: 18 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mb-20 grid grid-cols-2 divide-x divide-y divide-white/10 border border-white/10 bg-white/[.04] md:grid-cols-4 md:divide-y-0">
+          {[['500+', 'Happy clients'], ['150+', 'Weddings'], ['10+', 'Years experience'], ['100%', 'Client satisfaction']].map(([value, label]) => <div key={label} className="p-6 text-center md:p-8"><p className="font-serif text-4xl text-gold-400">{value}</p><p className="mt-2 text-[10px] font-mono uppercase tracking-[.16em] text-neutral-400">{label}</p></div>)}
+        </motion.div>
         {/* About Hero Header */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }}

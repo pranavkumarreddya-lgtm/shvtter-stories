@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 
@@ -9,6 +9,8 @@ interface HeaderProps {
 
 export default function Header({ activeSection, onNavigate }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  useEffect(() => { const onScroll = () => setIsScrolled(window.scrollY > 32); window.addEventListener('scroll', onScroll, { passive: true }); return () => window.removeEventListener('scroll', onScroll); }, []);
 
   const navItems = [
     { label: 'HOME', id: 'home' },
@@ -26,7 +28,7 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-50 bg-black/70 backdrop-blur-md border-b border-neutral-900/50 px-6 py-4 md:px-12 flex items-center justify-between">
+    <header className={`fixed top-0 left-0 z-50 flex w-full items-center justify-between border-b border-white/10 bg-black/65 px-6 backdrop-blur-xl transition-all duration-500 md:px-12 ${isScrolled ? 'py-3 shadow-xl shadow-black/20' : 'py-5'}`}>
       {/* Left side: Logo */}
       <div 
         className="flex items-center cursor-pointer select-none group" 

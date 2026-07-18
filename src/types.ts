@@ -15,6 +15,8 @@ export interface PortfolioItem {
   };
   story: string;
   date: string;
+  image: string;
+  photographer: string;
 }
 
 export interface BlogPost {
@@ -56,5 +58,8 @@ export interface TeamMember {
   role: string;
   specialty: string;
   bio: string;
+  experience: string;
+  awards: string;
+  image: string;
+  featuredWork: string;
 }
-

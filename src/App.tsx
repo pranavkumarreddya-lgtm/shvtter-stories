@@ -1,9 +1,12 @@
 import { useState, useEffect, Suspense, lazy } from 'react';
+import { AnimatePresence } from 'motion/react';
 import Header from './components/Header';
 import BackgroundVideo from './components/BackgroundVideo';
 import Hero from './components/Hero';
 import Footer from './components/Footer';
 import { CategoryType } from './types';
+import LoadingScreen from './components/LoadingScreen';
+import BookingCta from './components/BookingCta';
 
 // Lazy-load below-fold sections for code splitting
 const Portfolio = lazy(() => import('./components/Portfolio'));
@@ -29,6 +32,13 @@ export default function App() {
   const [activeSection, setActiveSection] = useState('home');
   const [selectedFilter, setSelectedFilter] = useState<CategoryType>('ALL');
   const [isShowreelOpen, setIsShowreelOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const timer = window.setTimeout(() => setIsLoading(false), reduced ? 100 : 6700);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   // Monitor scroll positioning to update active section indicators
   useEffect(() => {
@@ -85,6 +95,7 @@ export default function App() {
 
   return (
     <>
+      <AnimatePresence>{isLoading && <LoadingScreen />}</AnimatePresence>
       {/* Hero-only background video */}
       <BackgroundVideo />
 
@@ -97,8 +108,6 @@ export default function App() {
         <main className="flex-grow">
           {/* Hero — above the fold, not lazy loaded */}
           <Hero
-            selectedFilter={selectedFilter}
-            onFilterChange={handleFilterChange}
             onWatchShowreel={handleWatchShowreelClick}
             onViewPortfolio={handleViewPortfolioClick}
           />
@@ -134,6 +143,8 @@ export default function App() {
           <Suspense fallback={<SectionLoader />}>
             <InstagramFeed />
           </Suspense>
+
+          <BookingCta onBook={() => handleNavigate('contact')} />
 
           <Suspense fallback={<SectionLoader />}>
             <Contact />

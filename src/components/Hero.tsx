@@ -1,52 +1,36 @@
 import { motion } from 'motion/react';
-import { Instagram, Facebook, Twitter, Play } from 'lucide-react';
-import { CategoryType } from '../types';
+import { Play, ChevronDown, ArrowRight } from 'lucide-react';
 
 interface HeroProps {
-  selectedFilter: CategoryType;
-  onFilterChange: (category: CategoryType) => void;
   onWatchShowreel: () => void;
   onViewPortfolio: () => void;
 }
 
 export default function Hero({ 
-  selectedFilter, 
-  onFilterChange, 
   onWatchShowreel, 
   onViewPortfolio 
 }: HeroProps) {
   
-  const filterTabs: { label: string; value: CategoryType }[] = [
-    { label: 'ALL', value: 'ALL' },
-    { label: 'LANDSCAPE', value: 'LANDSCAPE' },
-    { label: 'PORTRAIT', value: 'PORTRAIT' },
-    { label: 'WILDLIFE', value: 'WILDLIFE' },
-    { label: 'TRAVEL', value: 'TRAVEL' },
-    { label: 'STREET', value: 'STREET' },
-    { label: 'COMMERCIAL', value: 'COMMERCIAL' },
-  ];
-
   const containerVariants = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.12,
-        delayChildren: 0.15,
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
       }
     }
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 15 },
+    hidden: { opacity: 0, y: 20 },
     show: { 
       opacity: 1, 
       y: 0, 
       transition: { 
         type: 'spring', 
-        stiffness: 90, 
-        damping: 18, 
-        mass: 0.8 
+        stiffness: 80, 
+        damping: 18 
       } 
     }
   };
@@ -54,156 +38,84 @@ export default function Hero({
   return (
     <section 
       id="home" 
-      className="relative min-h-screen flex flex-col justify-between pt-32 pb-16 px-6 md:px-12 lg:px-24 bg-black/25"
+      className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden bg-black"
     >
-      {/* Absolute top grid subtle details (not background animation, just structural wireframe guides to make it feel premium) */}
-      <div className="absolute top-0 left-6 md:left-12 bottom-0 w-[1px] bg-neutral-900/40 pointer-events-none" />
-      <div className="absolute top-0 right-6 md:right-12 bottom-0 w-[1px] bg-neutral-900/40 pointer-events-none" />
+      <motion.img initial={{ scale: 1.08 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease: 'easeOut' }} src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2200&q=90" alt="Photographer working in a studio" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+      <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(0,0,0,.94),rgba(0,0,0,.5)_58%,rgba(0,0,0,.25))]" />
+      {/* Decorative vertical guiding lines for professional grid detail */}
+      <div className="absolute top-0 left-6 md:left-12 bottom-0 w-[1px] bg-neutral-900/30 pointer-events-none" />
+      <div className="absolute top-0 right-6 md:right-12 bottom-0 w-[1px] bg-neutral-900/30 pointer-events-none" />
 
-      {/* Hero Content Section */}
+      {/* Cinematic Centerpiece Splash Logo */}
       <motion.div 
         variants={containerVariants}
         initial="hidden"
         animate="show"
-        className="flex-grow flex flex-col justify-center max-w-4xl z-10 my-auto"
+        className="z-10 flex max-w-4xl flex-col items-center text-center space-y-7"
       >
-        <motion.div variants={itemVariants}>
-          {/* Accent golden label */}
-          <span className="font-mono text-[10px] tracking-[0.35em] text-gold-400 font-semibold uppercase">
-            CAPTURING MOMENTS
-          </span>
+        {/* Animated Camera Aperture Logo Motif */}
+        <motion.div 
+          variants={itemVariants} 
+          className="relative w-36 h-36 flex items-center justify-center select-none"
+        >
+          {/* Outer rotating focus ring */}
+          <motion.div 
+            animate={{ rotate: 360 }}
+            transition={{ repeat: Infinity, duration: 25, ease: "linear" }}
+            className="absolute inset-0 rounded-full border border-dashed border-gold-500/40"
+          />
+          {/* Inner solid gold-trimmed chamber */}
+          <div className="absolute inset-4 rounded-full border-2 border-gold-500/20 bg-neutral-950/60 backdrop-blur-md flex items-center justify-center shadow-2xl shadow-gold-950/20">
+            {/* The Lens element */}
+            <div className="w-16 h-16 rounded-full border border-gold-400/40 flex items-center justify-center">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-gold-600/30 to-violet-900/40 border border-gold-400/60 flex items-center justify-center shadow-inner">
+                <div className="w-2.5 h-2.5 rounded-full bg-gold-400 shadow-md shadow-gold-500/50" />
+              </div>
+            </div>
+          </div>
         </motion.div>
 
-        {/* Large Display Title */}
-        <motion.h1
-          variants={itemVariants}
-          className="font-serif text-5xl sm:text-6xl md:text-8xl font-light text-white leading-[1.1] tracking-tight mt-6 select-none"
-        >
-          Stories Through <br />
-          <span className="italic font-normal">My Lens</span>
-        </motion.h1>
+        {/* Studio Branding */}
+        <motion.div variants={itemVariants} className="space-y-2">
+          <p className="eyebrow text-gold-400">Shvtter Stories / Est. 2016</p>
+          <h1 className="mt-4 font-serif text-5xl leading-[.9] text-white sm:text-7xl md:text-8xl">
+            Capturing moments<br />that <em className="text-gold-400">last forever.</em>
+          </h1>
+          <p className="mx-auto mt-6 max-w-lg text-sm leading-7 text-white/75">Wedding · Portrait · Events · Commercial Photography</p>
+          <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-gold-400 to-transparent mx-auto mt-4" />
+        </motion.div>
 
-        {/* Short, elegant description */}
-        <motion.p
-          variants={itemVariants}
-          className="font-sans text-[13px] md:text-[15px] leading-relaxed text-neutral-400 font-light max-w-md mt-6"
-        >
-          Professional photography services for people, places and moments that matter.
-        </motion.p>
-
-        {/* Hero Interactive Buttons */}
-        <motion.div
-          variants={itemVariants}
-          className="flex flex-wrap gap-6 items-center mt-10"
-        >
-          {/* Filled brown portfolio button */}
-          <motion.button
-            onClick={onViewPortfolio}
-            whileHover={{ scale: 1.03, backgroundColor: '#a97c55', boxShadow: '0 8px 25px rgba(0, 0, 0, 0.4)' }}
-            whileTap={{ scale: 0.98 }}
-            className="px-8 py-4 bg-[#9c7a55] text-white font-sans text-[11px] font-semibold tracking-[0.25em] uppercase transition-all duration-300 shadow-lg shadow-black/30 cursor-pointer"
-            id="hero-view-portfolio-btn"
-          >
-            VIEW PORTFOLIO
-          </motion.button>
-
-          {/* Outline showreel play button */}
+        {/* Minimal play showreel handle */}
+        <motion.div variants={itemVariants} className="flex flex-col items-center gap-3 sm:flex-row">
+          <motion.button onClick={onViewPortfolio} whileHover={{ scale: 1.04 }} whileTap={{ scale: .97 }} className="inline-flex items-center gap-2 rounded-full bg-gold-400 px-6 py-3 text-[11px] font-bold tracking-[.14em] text-black">EXPLORE PORTFOLIO <ArrowRight className="h-4 w-4" /></motion.button>
           <motion.button
             onClick={onWatchShowreel}
-            className="flex items-center space-x-3.5 py-2 group select-none cursor-pointer"
-            id="hero-watch-showreel-btn"
+            whileHover={{ scale: 1.05, borderColor: '#be9570', backgroundColor: 'rgba(212, 175, 55, 0.05)' }}
             whileTap={{ scale: 0.98 }}
+            className="flex items-center space-x-2.5 px-5 py-2.5 rounded-full border border-neutral-800 bg-neutral-950/40 backdrop-blur-sm text-neutral-400 hover:text-white transition-all duration-300 font-sans text-[10px] tracking-[0.2em] font-semibold uppercase cursor-pointer"
           >
-            <motion.div 
-              whileHover={{ scale: 1.08, borderColor: '#be9570', backgroundColor: 'rgba(190, 149, 112, 0.1)' }}
-              className="w-11 h-11 rounded-full border border-neutral-800 flex items-center justify-center transition-all duration-300"
-            >
-              <Play className="w-3.5 h-3.5 text-white fill-white ml-0.5 group-hover:text-gold-300 group-hover:fill-gold-300 transition-colors" />
-            </motion.div>
-            <span className="text-[11px] font-semibold tracking-[0.25em] text-neutral-400 group-hover:text-white transition-colors uppercase">
-              WATCH SHOWREEL
-            </span>
+            <Play className="w-3 h-3 text-gold-400 fill-gold-400" />
+          <span>PLAY SHOWREEL</span>
           </motion.button>
-        </motion.div>
-
-        {/* Social Icons Section */}
-        <motion.div
-          variants={itemVariants}
-          className="flex items-center space-x-6 mt-14 text-neutral-500"
-          id="hero-socials"
-        >
-          <motion.a
-            whileHover={{ scale: 1.25, y: -2, color: '#be9570' }}
-            transition={{ type: 'spring', stiffness: 350, damping: 10 }}
-            href="https://instagram.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gold-400 transition-colors duration-300"
-            aria-label="Instagram Profile"
-          >
-            <Instagram className="w-4 h-4" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25, y: -2, color: '#be9570' }}
-            transition={{ type: 'spring', stiffness: 350, damping: 10 }}
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gold-400 transition-colors duration-300"
-            aria-label="Facebook Profile"
-          >
-            <Facebook className="w-4 h-4" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.25, y: -2, color: '#be9570' }}
-            transition={{ type: 'spring', stiffness: 350, damping: 10 }}
-            href="https://twitter.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gold-400 transition-colors duration-300"
-            aria-label="Twitter Profile"
-          >
-            <Twitter className="w-4 h-4" />
-          </motion.a>
-          <motion.a
-            whileHover={{ scale: 1.15, y: -2, color: '#be9570' }}
-            transition={{ type: 'spring', stiffness: 350, damping: 10 }}
-            href="https://500px.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-gold-400 font-mono text-[11px] tracking-[0.1em] font-bold transition-colors duration-300"
-            aria-label="500px Profile"
-          >
-            500px
-          </motion.a>
         </motion.div>
       </motion.div>
 
-      {/* BOTTOM SECTION: Interactive Navigation Tabs (as shown exactly at the bottom of the photo) */}
-      <div className="w-full border-t border-neutral-900/60 pt-8 mt-12 z-10" id="filter-tabs-container">
-        <div className="flex overflow-x-auto no-scrollbar scroll-smooth items-center space-x-8 md:space-x-12 pb-2">
-          {filterTabs.map((tab) => {
-            const isSelected = selectedFilter === tab.value;
-            return (
-              <button
-                key={tab.value}
-                onClick={() => onFilterChange(tab.value)}
-                className="relative text-[10px] md:text-[11px] font-medium tracking-[0.25em] text-neutral-400 hover:text-white transition-colors duration-300 pb-3 whitespace-nowrap uppercase select-none cursor-pointer"
-                id={`filter-tab-${tab.value}`}
-              >
-                {tab.label}
-                {isSelected && (
-                  <motion.div
-                    layoutId="selectedFilterUnderline"
-                    className="absolute bottom-0 left-0 right-0 h-[1.5px] bg-neutral-200"
-                    transition={{ type: 'spring', stiffness: 350, damping: 30 }}
-                  />
-                )}
-              </button>
-            );
-          })}
-        </div>
-      </div>
+      {/* Bottom Scroll Cue */}
+      <motion.div 
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.2, duration: 0.8 }}
+        className="absolute bottom-10 z-10 flex flex-col items-center space-y-1.5 cursor-pointer text-neutral-500 hover:text-white transition-colors select-none"
+        onClick={onViewPortfolio}
+      >
+        <span className="font-mono text-[8px] tracking-[0.3em] uppercase">EXPLORE WORK</span>
+        <motion.div
+          animate={{ y: [0, 5, 0] }}
+          transition={{ repeat: Infinity, duration: 1.8, ease: "easeInOut" }}
+        >
+          <ChevronDown className="w-4 h-4 text-gold-400" />
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
