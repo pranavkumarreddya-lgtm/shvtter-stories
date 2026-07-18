@@ -14,6 +14,8 @@ export default function Header({ activeSection, onNavigate }: HeaderProps) {
     { label: 'HOME', id: 'home' },
     { label: 'ABOUT', id: 'about' },
     { label: 'PORTFOLIO', id: 'portfolio' },
+    { label: 'SERVICES', id: 'services' },
+    { label: 'TEAM', id: 'team' },
     { label: 'BLOG', id: 'blog' },
     { label: 'CONTACT', id: 'contact' },
   ];

@@ -1,27 +1,18 @@
 import { useRef, useEffect, useState, useCallback } from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
 
 /**
- * BackgroundVideo — Full-screen fixed background video with scroll-scrubbing.
- *
- * How scroll-scrubbing works:
- *   1. We calculate `scrollProgress` = scrollY / (documentHeight - viewportHeight) → [0, 1].
- *   2. We map that progress to the video's duration → targetTime = progress * video.duration.
- *   3. Inside a rAF loop we *lerp* the video's currentTime towards targetTime
- *      (time += (target - time) * ease) to keep motion buttery smooth.
- *   4. On mobile / low-power devices we skip the <video> entirely and show a
- *      static poster image to save battery.
+ * BackgroundVideo — Hero-only scroll-scrubbed background video.
+ * Fades out and pauses once the user scrolls past the hero section.
  */
 
-// Simple mobile / low-power heuristic
 function isMobileOrLowPower(): boolean {
   if (typeof navigator === 'undefined') return false;
   const ua = navigator.userAgent;
   const isMobile = /Android|iPhone|iPad|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(ua);
-  // Check for reduced-motion preference (accessibility / battery-saver)
   const prefersReduced =
     typeof window !== 'undefined' &&
     window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  // Check hardware concurrency as a rough proxy for low-power
   const lowCores = typeof navigator.hardwareConcurrency === 'number' && navigator.hardwareConcurrency <= 2;
   return isMobile || prefersReduced || lowCores;
 }
@@ -33,39 +24,48 @@ export default function BackgroundVideo() {
   const targetTimeRef = useRef<number>(0);
   const [useFallback, setUseFallback] = useState(false);
 
-  // Detect on mount whether we should fall back to poster
+  // Track scroll progress for the entire page
+  const { scrollY } = useScroll();
+
+  // Fade out the video after the hero section (~100vh)
+  // opacity: 1 at 0px, starts fading at 60vh, fully transparent at 100vh
+  const videoOpacity = useTransform(scrollY, [0, window.innerHeight * 0.6, window.innerHeight], [1, 0.6, 0]);
+
   useEffect(() => {
     setUseFallback(isMobileOrLowPower());
   }, []);
 
-  /**
-   * Scroll handler — lightweight: just updates a target number.
-   * The heavy lifting (setting video.currentTime) happens inside the rAF loop.
-   */
+  // Pause video when scrolled past hero
+  useEffect(() => {
+    const unsubscribe = videoOpacity.on('change', (latest) => {
+      const video = videoRef.current;
+      if (!video) return;
+      if (latest <= 0.01) {
+        video.pause();
+      }
+    });
+    return () => unsubscribe();
+  }, [videoOpacity]);
+
+  // Scroll-scrub handler — only update target time
   const handleScroll = useCallback(() => {
     const video = videoRef.current;
     if (!video || !video.duration || !isFinite(video.duration)) return;
 
-    const scrollY = window.scrollY;
+    const scrollPos = window.scrollY;
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
     if (maxScroll <= 0) return;
 
-    // Clamp progress between 0 and 1
-    const progress = Math.min(Math.max(scrollY / maxScroll, 0), 1);
+    const progress = Math.min(Math.max(scrollPos / maxScroll, 0), 1);
     targetTimeRef.current = progress * video.duration;
   }, []);
 
-  /**
-   * rAF animation loop — lerps currentTime towards the scroll-derived target.
-   * Using a lerp factor of 0.08 gives a cinematic, slow-glide feel.
-   */
+  // rAF loop — lerp currentTime toward target
   const animate = useCallback(() => {
     const video = videoRef.current;
     if (video && video.duration && isFinite(video.duration)) {
       const ease = 0.08;
       const diff = targetTimeRef.current - currentTimeRef.current;
-
-      // Only seek when the delta is meaningful (avoids micro-jitter)
       if (Math.abs(diff) > 0.01) {
         currentTimeRef.current += diff * ease;
         video.currentTime = currentTimeRef.current;
@@ -77,10 +77,7 @@ export default function BackgroundVideo() {
   useEffect(() => {
     if (useFallback) return;
 
-    // Attach passive scroll listener (never blocks the main thread)
     window.addEventListener('scroll', handleScroll, { passive: true });
-
-    // Kick-off the rAF loop
     rafRef.current = requestAnimationFrame(animate);
 
     return () => {
@@ -89,11 +86,11 @@ export default function BackgroundVideo() {
     };
   }, [useFallback, handleScroll, animate]);
 
-  // ── Fallback: static poster on mobile / low-power ──
   if (useFallback) {
     return (
-      <div
-        className="fixed inset-0 -z-10"
+      <motion.div
+        style={{ opacity: videoOpacity }}
+        className="fixed inset-0 -z-10 pointer-events-none"
         aria-hidden="true"
         id="bg-video-fallback"
       >
@@ -103,16 +100,15 @@ export default function BackgroundVideo() {
           className="w-full h-full object-cover"
           loading="eager"
         />
-        {/* Very subtle overlay — just enough for white text legibility */}
         <div className="absolute inset-0 bg-black/20" />
-      </div>
+      </motion.div>
     );
   }
 
-  // ── Desktop: scroll-scrubbing <video> ──
   return (
-    <div
-      className="fixed inset-0 -z-10"
+    <motion.div
+      style={{ opacity: videoOpacity }}
+      className="fixed inset-0 -z-10 pointer-events-none"
       aria-hidden="true"
       id="bg-video-container"
     >
@@ -122,12 +118,10 @@ export default function BackgroundVideo() {
         poster={`${import.meta.env.BASE_URL}camera_poster.png`}
         muted
         playsInline
-        preload="auto"
+        preload="metadata"
         className="w-full h-full object-cover"
-        /* autoplay is intentionally omitted — we control playback via currentTime */
       />
-      {/* Minimal overlay — keeps text readable without washing out the video */}
       <div className="absolute inset-0 bg-black/15" />
-    </div>
+    </motion.div>
   );
 }

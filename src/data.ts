@@ -1,4 +1,5 @@
-import { PortfolioItem, BlogPost, GearItem } from './types';
+import { PortfolioItem, BlogPost, GearItem, ServicePackage, Testimonial, TeamMember } from './types';
+
 
 export const portfolioItems: PortfolioItem[] = [
   {
@@ -281,5 +282,99 @@ export const gearInventory: GearItem[] = [
     category: 'Telephoto Lenses',
     model: 'Sony FE 200-600mm f/5.6-6.3 G OSS',
     purpose: 'Essential lens for safely capturing wildlife at extreme focal ranges.'
+  }
+];
+
+export const servicePackages: ServicePackage[] = [
+  {
+    id: 'svc-1',
+    title: 'Portrait Session',
+    subtitle: 'Individual & Couples',
+    price: '$1,500',
+    features: ['2-hour studio or outdoor session', '40+ edited high-res images', 'Professional retouching', 'Private online gallery', 'Print-ready files']
+  },
+  {
+    id: 'svc-2',
+    title: 'Wedding Story',
+    subtitle: 'Full-Day Coverage',
+    price: '$5,000',
+    features: ['10-hour day coverage', '500+ edited images', 'Second photographer included', 'Engagement session', 'Premium leather album', 'Cinematic highlight reel'],
+    highlighted: true
+  },
+  {
+    id: 'svc-3',
+    title: 'Event Coverage',
+    subtitle: 'Corporate & Social',
+    price: '$2,500',
+    features: ['4-hour event coverage', '200+ edited images', 'Same-day preview gallery', 'Social media optimized exports', 'Commercial usage license']
+  },
+  {
+    id: 'svc-4',
+    title: 'Commercial Campaign',
+    subtitle: 'Brand & Product',
+    price: 'Custom',
+    features: ['Full creative direction', 'Product styling & set design', 'Unlimited edited selects', 'Campaign-ready deliverables', 'Multi-platform licensing']
+  }
+];
+
+export const testimonials: Testimonial[] = [
+  {
+    id: 'test-1',
+    name: 'Aisha Rahman',
+    projectType: 'Wedding Photography',
+    quote: 'They captured every single moment we dreamed of and so many we never expected. The photos feel like stepping back into the happiest day of our lives.',
+    rating: 5
+  },
+  {
+    id: 'test-2',
+    name: 'Marcus Chen',
+    projectType: 'Commercial Campaign',
+    quote: 'The attention to detail in the product shots was exceptional. Our brand identity has never looked this premium. Sales increased 40% after the campaign launch.',
+    rating: 5
+  },
+  {
+    id: 'test-3',
+    name: 'Elena Vasquez',
+    projectType: 'Portrait Session',
+    quote: 'I was nervous about being in front of a camera, but they made the entire experience feel so natural. The portraits are absolute works of art.',
+    rating: 5
+  },
+  {
+    id: 'test-4',
+    name: 'David Thornton',
+    projectType: 'Event Coverage',
+    quote: 'Professional, unobtrusive, and incredibly talented. The corporate gala photos were delivered within 48 hours and exceeded all expectations.',
+    rating: 5
+  }
+];
+
+export const teamMembers: TeamMember[] = [
+  {
+    id: 'team-1',
+    name: 'Alexander Mercer',
+    role: 'Lead Photographer & Founder',
+    specialty: 'Landscape, Travel & Fine Art',
+    bio: 'Over a decade of international experience capturing the raw beauty of natural environments and human moments across 40+ countries.'
+  },
+  {
+    id: 'team-2',
+    name: 'Sofia Nakamura',
+    role: 'Senior Portrait Artist',
+    specialty: 'Portraits, Fashion & Weddings',
+    bio: 'Expert in sculpting light to reveal the authentic character and soul of every subject, from intimate portraits to editorial fashion campaigns.'
+  },
+  {
+    id: 'team-3',
+    name: 'James Okonkwo',
+    role: 'Commercial & Product Specialist',
+    specialty: 'Product, Architecture & Luxury Brands',
+    bio: 'Bringing meticulous precision to commercial assignments, ensuring every product shot conveys luxury, quality, and brand narrative.'
+  },
+  {
+    id: 'team-4',
+    name: 'Catalina Reyes',
+    role: 'Documentary & Street Photographer',
+    specialty: 'Street, Documentary & Events',
+    bio: 'Passionate about capturing the candid theater of everyday life and preserving authentic moments at private and corporate events.'
   }
 ];

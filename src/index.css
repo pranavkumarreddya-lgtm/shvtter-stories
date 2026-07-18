@@ -20,8 +20,8 @@
 
 /* Custom smooth scroll and dark body styling */
 html, body {
-  /* Background is transparent so the fixed <video> behind (-z-1) shows through */
-  background-color: transparent;
+  /* Solid dark bg — video only shows through the hero section */
+  background-color: #0a0a0a;
   color: #f3f4f6;
   scroll-behavior: smooth;
   font-family: var(--font-sans);

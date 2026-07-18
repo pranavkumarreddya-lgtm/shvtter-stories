@@ -32,3 +32,29 @@ export interface GearItem {
   model: string;
   purpose: string;
 }
+
+export interface ServicePackage {
+  id: string;
+  title: string;
+  subtitle: string;
+  price: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+export interface Testimonial {
+  id: string;
+  name: string;
+  projectType: string;
+  quote: string;
+  rating: number;
+}
+
+export interface TeamMember {
+  id: string;
+  name: string;
+  role: string;
+  specialty: string;
+  bio: string;
+}
+
