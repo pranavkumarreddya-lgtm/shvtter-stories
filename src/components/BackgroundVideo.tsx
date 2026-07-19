@@ -96,7 +96,7 @@ export default function BackgroundVideo() {
       >
         <img
           src={`${import.meta.env.BASE_URL}camera_poster.png`}
-          alt=""
+          alt="Exploded technical rendering of a classic SLR camera lens"
           className="w-full h-full object-cover"
           loading="eager"
         />

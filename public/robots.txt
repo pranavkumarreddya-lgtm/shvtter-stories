@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://pranavkumarreddya-lgtm.github.io/shvtter-stories/sitemap.xml

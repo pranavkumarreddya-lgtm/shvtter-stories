@@ -40,7 +40,7 @@ export default function Hero({
       id="home" 
       className="relative min-h-screen flex flex-col justify-center items-center px-6 overflow-hidden bg-black"
     >
-      <motion.img initial={{ scale: 1.08 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease: 'easeOut' }} src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2200&q=90" alt="Photographer working in a studio" className="absolute inset-0 h-full w-full object-cover opacity-55" />
+      <motion.img initial={{ scale: 1.08 }} animate={{ scale: 1 }} transition={{ duration: 1.8, ease: 'easeOut' }} src="https://images.unsplash.com/photo-1516035069371-29a1b244cc32?auto=format&fit=crop&w=2200&q=90" alt="Photographer working in a studio" className="absolute inset-0 h-full w-full object-cover opacity-55" fetchPriority="high" decoding="async" />
       <div className="absolute inset-0 bg-[linear-gradient(110deg,rgba(0,0,0,.94),rgba(0,0,0,.5)_58%,rgba(0,0,0,.25))]" />
       {/* Decorative vertical guiding lines for professional grid detail */}
       <div className="absolute top-0 left-6 md:left-12 bottom-0 w-[1px] bg-neutral-900/30 pointer-events-none" />

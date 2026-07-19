@@ -114,6 +114,17 @@ export default function Blog() {
                 {/* Header Section (Clickable) */}
                 <div 
                   onClick={() => toggleExpand(post.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'Enter' || event.key === ' ') {
+                      event.preventDefault();
+                      toggleExpand(post.id);
+                    }
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isExpanded}
+                  aria-controls={`${post.id}-content`}
+                  aria-label={`${isExpanded ? 'Collapse' : 'Expand'} ${post.title}`}
                   className="p-6 md:p-8 cursor-pointer flex justify-between items-start gap-4 select-none"
                 >
                   <div className="space-y-3 flex-grow">
@@ -155,6 +166,7 @@ export default function Blog() {
                 <AnimatePresence initial={false}>
                   {isExpanded && (
                     <motion.div
+                      id={`${post.id}-content`}
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: 'auto', opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
@@ -173,6 +185,7 @@ export default function Blog() {
                         {/* Collapsing prompt at the bottom */}
                         <div className="flex justify-end mt-8 pt-4 border-t border-neutral-900/80">
                           <button
+                            type="button"
                             onClick={() => toggleExpand(post.id)}
                             className="text-[10px] font-mono tracking-widest text-neutral-500 hover:text-white transition-colors cursor-pointer"
                           >

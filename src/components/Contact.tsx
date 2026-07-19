@@ -187,12 +187,13 @@ export default function Contact() {
 
                   {/* Name field */}
                   <motion.div variants={contactItemVariants} className="space-y-2">
-                    <label className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                    <label htmlFor="contact-name" className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
                       Your Full Name *
                     </label>
                     <input
                       required
                       type="text"
+                      id="contact-name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
@@ -203,12 +204,13 @@ export default function Contact() {
 
                   {/* Email field */}
                   <motion.div variants={contactItemVariants} className="space-y-2">
-                    <label className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                    <label htmlFor="contact-email" className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
                       Email Address *
                     </label>
                     <input
                       required
                       type="email"
+                      id="contact-email"
                       name="email"
                       value={formData.email}
                       onChange={handleInputChange}
@@ -220,11 +222,12 @@ export default function Contact() {
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     {/* Category selection */}
                     <motion.div variants={contactItemVariants} className="space-y-2">
-                      <label className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                      <label htmlFor="contact-category" className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
                         Commission Category
                       </label>
                       <select
                         name="category"
+                        id="contact-category"
                         value={formData.category}
                         onChange={handleInputChange}
                         className="w-full bg-[#0d0d0d] border border-neutral-800 focus:border-gold-500 focus:outline-none rounded-md px-4 py-3 font-sans text-xs text-neutral-400 focus:text-white transition-all duration-300 cursor-pointer"
@@ -240,11 +243,12 @@ export default function Contact() {
 
                     {/* Budget selection */}
                     <motion.div variants={contactItemVariants} className="space-y-2">
-                      <label className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                      <label htmlFor="contact-budget" className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
                         Estimated Budget (USD)
                       </label>
                       <select
                         name="budget"
+                        id="contact-budget"
                         value={formData.budget}
                         onChange={handleInputChange}
                         className="w-full bg-[#0d0d0d] border border-neutral-800 focus:border-gold-500 focus:outline-none rounded-md px-4 py-3 font-sans text-xs text-neutral-400 focus:text-white transition-all duration-300 cursor-pointer"
@@ -259,12 +263,13 @@ export default function Contact() {
 
                   {/* Message field */}
                   <motion.div variants={contactItemVariants} className="space-y-2">
-                    <label className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
+                    <label htmlFor="contact-message" className="font-mono text-[10px] tracking-widest text-neutral-400 uppercase font-semibold">
                       Mission Brief / Messages *
                     </label>
                     <textarea
                       required
                       name="message"
+                      id="contact-message"
                       rows={5}
                       value={formData.message}
                       onChange={handleInputChange}
